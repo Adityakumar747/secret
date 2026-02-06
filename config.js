@@ -11,6 +11,19 @@ const CONFIG = {
     // === UNLOCK SETTINGS ===
     enableDateLock: true,  // Set to false to unlock all cards immediately
     unlockYear: 2026,  // Year when cards unlock
+    testDate: "", // Set a date here (YYYY-MM-DD) to test the website (Leave empty or null for real-time)
+
+    // === UNLOCK DATES (MM-DD) ===
+    unlockDates: {
+        rose: "02-07",
+        propose: "02-08",
+        chocolate: "02-09",
+        teddy: "02-10",
+        promise: "02-11",
+        hug: "02-12",
+        kiss: "02-13",
+        valentine: "02-14"
+    },
 
     // === MUSIC ===
     // Add your music file paths here. The player will go through them in order.

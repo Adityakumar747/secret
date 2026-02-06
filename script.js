@@ -1059,17 +1059,58 @@ function createConfetti() {
 // LOCK SYSTEM
 // ===================================
 
+function parseLocalDate(dateStr) {
+    if (!dateStr) return null;
+
+    // If it's already a date object, return it centered to start of day if it's just a date
+    if (dateStr instanceof Date) return dateStr;
+
+    // Handle YYYY-MM-DD format manually to ensure local time
+    const parts = dateStr.split('-');
+    if (parts.length === 3) {
+        const year = parseInt(parts[0], 10);
+        const month = parseInt(parts[1], 10) - 1;
+        const day = parseInt(parts[2], 10);
+        return new Date(year, month, day);
+    }
+
+    // Fallback to standard constructor
+    return new Date(dateStr);
+}
+
+function getCurrentDate() {
+    // Check for test date in CONFIG
+    if (CONFIG.testDate) {
+        return parseLocalDate(CONFIG.testDate);
+    }
+
+    // Check for simulated date in sessionStorage (legacy/debug)
+    const simulated = sessionStorage.getItem('simulatedDate');
+    if (simulated) {
+        return parseLocalDate(simulated);
+    }
+
+    return new Date();
+}
+
 function getUnlockDate(dayType) {
     const year = CONFIG?.unlockYear || 2026;
+    const dateStr = CONFIG?.unlockDates?.[dayType];
+
+    if (dateStr) {
+        return parseLocalDate(`${year}-${dateStr}`);
+    }
+
+    // Fallback if not in config
     const dates = {
-        'rose': new Date(year, 1, 7),      // Feb 7
-        'propose': new Date(year, 1, 8),   // Feb 8
-        'chocolate': new Date(year, 1, 9), // Feb 9
-        'teddy': new Date(year, 1, 10),    // Feb 10
-        'promise': new Date(year, 1, 11),  // Feb 11
-        'hug': new Date(year, 1, 12),      // Feb 12
-        'kiss': new Date(year, 1, 13),     // Feb 13
-        'valentine': new Date(year, 1, 14) // Feb 14
+        'rose': new Date(year, 1, 7),
+        'propose': new Date(year, 1, 8),
+        'chocolate': new Date(year, 1, 9),
+        'teddy': new Date(year, 1, 10),
+        'promise': new Date(year, 1, 11),
+        'hug': new Date(year, 1, 12),
+        'kiss': new Date(year, 1, 13),
+        'valentine': new Date(year, 1, 14)
     };
     return dates[dayType];
 }
@@ -1081,7 +1122,7 @@ function isCardLocked(dayType) {
     if (localStorage.getItem('lockSystemDisabled') === 'true') return false;
 
     const unlockDate = getUnlockDate(dayType);
-    const now = new Date();
+    const now = getCurrentDate();
 
     // Set both to start of day for comparison
     const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
@@ -1138,11 +1179,7 @@ function updateLockedCards() {
 }
 
 function getTimeRemaining(endtime) {
-    let now = new Date();
-    const simulated = sessionStorage.getItem('simulatedDate');
-    if (simulated) {
-        now = new Date(simulated);
-    }
+    const now = getCurrentDate();
 
     const total = Date.parse(endtime) - Date.parse(now);
     if (total <= 0) return "UNLOCKED";
