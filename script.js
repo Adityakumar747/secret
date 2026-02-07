@@ -548,7 +548,6 @@ function renderDayPage(container, dayData, dayType) {
                 ${generatePhotoCards(dayData.photos, dayType, dayData.color)}
             </div>
         <div class="memories-section">
-            <h2 class="section-title">Remember When... 💭</h2>
             <p class="memories-text">${dayData.memories}</p>
         </div>
 
@@ -977,17 +976,16 @@ function renderValentinePage(container) {
             </div>
         </div>
 
-        <!-- MEMORY WALL SECTION (Manual Scroll) -->
+        <!-- MEMORY WALL SECTION (Infinite Scroll) -->
         <div class="memory-wall-container">
             <h2 class="section-title">Our Memory Wall 💖</h2>
-            <p style="text-align: center; color: var(--text-secondary); margin-bottom: 1rem; font-style: italic;">
-                Scroll down to see all our memories together
-            </p>
             <div class="memory-wall">
                 <div class="memory-track">
                     ${(() => {
             const photos = CONFIG.valentinePhotos || [];
-            return photos.map(photo => `
+            // Triplicate the photos array for an even smoother loop in masonry layout
+            const duplicatedPhotos = [...photos, ...photos, ...photos];
+            return duplicatedPhotos.map(photo => `
                             <div class="wall-item">
                                 <img src="${photo}" alt="Memory" loading="lazy">
                             </div>

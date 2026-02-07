@@ -169,7 +169,7 @@ body::before {
     position: fixed;
     top: 20px;
     right: 20px;
-    z-index: 1000;
+    z-index: 3000;
     display: flex;
     align-items: center;
     gap: 10px;
@@ -292,7 +292,7 @@ body::before {
     position: fixed;
     top: 20px;
     left: 20px;
-    z-index: 1000;
+    z-index: 3000;
 }
 
 .toggle-btn {
@@ -659,36 +659,39 @@ body::before {
     background: rgba(255, 255, 255, 0.05);
     border-radius: 30px;
     margin: 4rem auto;
-    max-width: 1200px;
+    max-width: 900px;
     overflow: hidden;
+    position: relative;
 }
 
 .memory-wall {
-    height: 600px;
-    overflow-y: auto;
-    /* Manual scroll */
+    height: 700px;
+    overflow: hidden;
     position: relative;
-    mask-image: linear-gradient(to bottom, transparent, black 5%, black 95%, transparent);
+    mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
     padding: 20px;
 }
 
 .memory-track {
-    columns: 3 250px;
-    /* Masonry layout: column count and min-width */
-    column-gap: 1.5rem;
+    columns: 2 250px;
+    column-gap: 20px;
     display: block;
+    animation: marquee-vertical 60s linear infinite;
 }
 
 .wall-item {
     break-inside: avoid;
-    margin-bottom: 1.5rem;
-}
-
-.wall-item {
-    border-radius: 10px;
+    margin-bottom: 20px;
+    border-radius: 15px;
     overflow: hidden;
     box-shadow: var(--shadow);
-    border: 2px solid white;
+    border: 3px solid white;
+    transition: transform 0.3s ease;
+}
+
+.wall-item:hover {
+    transform: scale(1.05);
+    z-index: 10;
 }
 
 .wall-item img {
@@ -696,6 +699,27 @@ body::before {
     height: auto;
     object-fit: contain;
     display: block;
+}
+
+@keyframes marquee-vertical {
+    0% {
+        transform: translateY(0);
+    }
+
+    100% {
+        transform: translateY(-50%);
+    }
+}
+
+/* Pause animation on hover */
+.memory-wall:hover .memory-track {
+    animation-play-state: paused;
+}
+
+@media (max-width: 768px) {
+    .memory-track {
+        columns: 2 150px;
+    }
 }
 
 .day-card {

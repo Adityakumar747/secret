@@ -29,14 +29,49 @@ const CONFIG = {
     // Add your music file paths here. The player will go through them in order.
     musicPlaylist: [
         {
+            title: "Main Chahta Hu Tujhko",
+            artist: "Unknown",
+            file: "assets/music/Main_Chahta_hu_tujhko_dilo_jaan_ki_tarah_256KBPS.webm"
+        },
+        {
+            title: "Chand Si Mehbooba",
+            artist: "Mukesh",
+            file: "assets/music/Chand_Si_Mehbooba_Ho_Meri_Himalay_Ki_God_Mein_1965_Manoj_Kumar_Mala_Sinha_Mukesh_Song_256kbps.webm"
+        },
+        {
+            title: "Teeji Seat",
+            artist: "Kaka",
+            file: "assets/music/Kaka_Teeji_Seat_Official_Video_Aakansha_New_Punjabi_Songs_2021-Latest_Punjabi_Songs_2020_2021_256kbps.webm"
+        },
+        {
+            title: "GATA ONLY (Slowed)",
+            artist: "FloyyMenor",
+            file: "assets/music/GATA_ONLY_SLOWED_256kbps.webm"
+        },
+        {
+            title: "Temporary Pyar",
+            artist: "Kaka",
+            file: "assets/music/Kaka_New_Song_Temporary_Pyar_-_Kaka_Lyrics_Darling_Adaab_Kharoud_Latest_Punjabi_Songs_2025_256KBPS.webm"
+        },
+        {
+            title: "Midnight Call",
+            artist: "Harkirat Sangha",
+            file: "assets/music/Midnight_Call_Official_Video_-_Harkirat_Sangha_Starboy_X_Rupan_Bal_Interstellar_2025_256kbps.webm"
+        },
+        {
+            title: "Naam Tera",
+            artist: "Ndee Kundu",
+            file: "assets/music/NAAM_TERA_Ndee_Kundu_Mp_Sega_Haryanvi_Songs_Haryanavi_2021_Leke_Meri_Kali_Kali_Car_256kbps.webm"
+        },
+        {
+            title: "Me Gustas Tu (Slowed)",
+            artist: "Manu Chao",
+            file: "assets/music/manu_chao_-_me_gustas_tu_slowed_reverb_128KBPS.mp4"
+        },
+        {
             title: "Our Special Song",
             artist: "Valentine",
             file: "assets/music/Status_256kbps.mp3"
-        },
-        {
-            title: "Music 2",
-            artist: "Artist Name",
-            file: "assets/music/Status_256kbps.mp3" // Using same file as placeholder
         }
     ],
     // musicFile: "assets/music/our-song.mp3", // Legacy support (can remove)
@@ -143,7 +178,7 @@ Your Love`,
             ],
             // Add a cute gif path here (e.g., "assets/photos/cute-cat.gif")
             cuteImage: "assets/photos/rose.gif",
-            memories: "The time I spend is such a amzazing snd peaceful.your presence always remind me of the most beautiful thing in my life.  I love u soooo sooo much "
+            memories: "The time I spend is such a amzazing and peaceful.your presence always remind me of the most beautiful thing in my life.  I love u soooo sooo much "
         },
 
         proposeDay: {
@@ -153,11 +188,11 @@ Your Love`,
             message: "I choose you. Today, tomorrow, and forever.",
             photos: [
                 "assets/photos/IMG_5564.JPG.jpeg",
-                "assets/photos/IMG_5566.JPG.jpeg"
+                "assets/photos/IMG_5846.JPG.jpeg"
             ],
             // Add a cute gif path here (e.g., "assets/photos/cute-cat.gif")
             cuteImage: "assets/photos/Milk And Mocha Love GIF.gif",
-            memories: "The day I knew you were the one..."
+            memories: "From the first day  everythings look so magical time pass like air with every moment of time i feel more in love wih u "
         },
 
         chocolateDay: {
@@ -171,7 +206,7 @@ Your Love`,
             ],
             // Add a cute gif path here (e.g., "assets/photos/cute-cat.gif")
             cuteImage: "assets/photos/choclate.gif",
-            memories: "Our sweet moments together..."
+            memories: "Like chocolate, you make life sweeter just by being in it… and I always crave chocolate."
         },
 
         teddyDay: {
@@ -185,20 +220,20 @@ Your Love`,
             ],
             // Add a cute gif path here (e.g., "assets/photos/cute-cat.gif")
             cuteImage: "assets/photos/Teddy Bear GIF.gif",
-            memories: "You make every day feel like a warm hug..."
+            memories: "Soft hearts matter more than soft toys… and yours is really soft 🤤."
         },
 
         promiseDay: {
             title: "Promise Day",
             date: "February 11",
             color: "#9b59b6",
-            message: "I promise to love you, cherish you, and stand by you always.",
+            message: "I promise to stay, even when things get hard.NO matter what happen in future you will be my first priority",
             photos: [
                 "assets/photos/IMG_5783.JPG.jpeg"
             ],
             // Add a cute gif path here (e.g., "assets/photos/cute-cat.gif")
             cuteImage: "assets/photos/promoise.gif",
-            memories: "The promises we've made..."
+            memories: "My promise is simple: effort, honesty, and respect. I promise to grow, with you or for you.No big words, just a real promise."
         },
 
         hugDay: {
@@ -211,14 +246,14 @@ Your Love`,
             ],
             // Add a cute gif path here (e.g., "assets/photos/cute-cat.gif")
             cuteImage: "assets/photos/ghost hug GIF.gif",
-            memories: "Every embrace tells our story..."
+            memories: "Some magic exists… it’s called your hug."
         },
 
         kissDay: {
             title: "Kiss Day",
             date: "February 13",
             color: "#FF1493",
-            message: "Every kiss is a promise, every touch is magic.",
+            message: "A kiss from you ? Yeah… I’d risk everything.Let’s skip the words and start with a kiss",
             photos: [
                 "assets/photos/IMG_5786.JPG.jpeg"
             ],
@@ -227,7 +262,7 @@ Your Love`,
                 "assets/photos/kiss.mp4",
                 "assets/photos/kiss2.mp4"
             ],
-            memories: "The magic of our first kiss..."
+            memories: "Your lips look like they’re about to start a story."
         }
     },
 
