@@ -246,7 +246,7 @@ Your Love`,
             ],
             // Add a cute gif path here (e.g., "assets/photos/cute-cat.gif")
             cuteImage: "assets/photos/ghost hug GIF.gif",
-            memories: "Some magic exists… it’s called your hug."
+            memories: "Some magic exists… it’s called your hug.I want to hug u until my clothes smell like you "
         },
 
         kissDay: {
