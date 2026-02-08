@@ -660,23 +660,210 @@ body::before {
     border-radius: 30px;
     margin: 4rem auto;
     max-width: 900px;
-    overflow: hidden;
+}
+
+.chocolate-scratch-section {
+    margin: 2rem auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 320px;
+    padding: 1rem;
+    background: rgba(255, 117, 140, 0.03);
+    /* Subtle pink background */
+    border-radius: 25px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.03);
+}
+
+.scratch-container {
     position: relative;
+    width: 250px;
+    height: 250px;
+    margin: 1.5rem auto;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    background: #fff;
+    border: 5px solid #fff;
+}
+
+#chocolateScratchCanvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><text y="24" font-size="24">🍫</text></svg>'), crosshair;
+    touch-action: none;
+    transition: opacity 0.8s ease-out;
+}
+
+.scratch-instruction {
+    font-family: var(--font-body);
+    color: #8B4513;
+    font-size: 0.95rem;
+    margin-top: 1rem;
+    font-weight: 500;
+    opacity: 0.8;
+}
+
+#chocolateScratchCanvas.revealed {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* ===================================
+   TEDDY DAY SHAKE REVEAL
+   =================================== */
+
+.teddy-shake-section {
+    margin: 2rem auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 320px;
+    padding: 1.5rem;
+    background: rgba(222, 184, 135, 0.05);
+    /* Soft honey/beige */
+    border-radius: 25px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.03);
+}
+
+.shake-box-container {
+    position: relative;
+    width: 250px;
+    height: 250px;
+    margin: 1rem auto;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #fff;
+    border: 5px solid #fff;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    touch-action: none;
+}
+
+.shake-box-cover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #DEB887, #F5DEB3);
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55), opacity 0.5s ease;
+}
+
+.shake-box-cover.revealed {
+    transform: translateY(-100%) scale(0.5) rotate(10deg);
+    opacity: 0;
+    pointer-events: none;
+}
+
+.shake-icon {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    animation: gentle-wobble 2s infinite ease-in-out;
+}
+
+.shake-text {
+    font-family: var(--font-display);
+    color: #8B4513;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.shake-image-hidden {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Shake Animation Classes */
+.shaking {
+    animation: box-shake 0.1s infinite;
+}
+
+@keyframes box-shake {
+    0% {
+        transform: translate(1px, 1px) rotate(0deg);
+    }
+
+    10% {
+        transform: translate(-1px, -2px) rotate(-1deg);
+    }
+
+    20% {
+        transform: translate(-3px, 0px) rotate(1deg);
+    }
+
+    30% {
+        transform: translate(3px, 2px) rotate(0deg);
+    }
+
+    40% {
+        transform: translate(1px, -1px) rotate(1deg);
+    }
+
+    50% {
+        transform: translate(-1px, 2px) rotate(-1deg);
+    }
+
+    60% {
+        transform: translate(-3px, 1px) rotate(0deg);
+    }
+
+    70% {
+        transform: translate(3px, 1px) rotate(-1deg);
+    }
+
+    80% {
+        transform: translate(-1px, -1px) rotate(1deg);
+    }
+
+    90% {
+        transform: translate(1px, 2px) rotate(0deg);
+    }
+
+    100% {
+        transform: translate(1px, -2px) rotate(-1deg);
+    }
+}
+
+@keyframes gentle-wobble {
+
+    0%,
+    100% {
+        transform: rotate(-5deg);
+    }
+
+    50% {
+        transform: rotate(5deg);
+    }
+}
+
+.shake-instruction {
+    font-family: var(--font-body);
+    color: #8B4513;
+    font-size: 0.95rem;
+    margin-top: 1rem;
+    font-weight: 500;
+    opacity: 0.8;
 }
 
 .memory-wall {
-    height: 700px;
-    overflow: hidden;
-    position: relative;
-    mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
     padding: 20px;
 }
 
 .memory-track {
     columns: 2 250px;
     column-gap: 20px;
-    display: block;
-    animation: marquee-vertical 60s linear infinite;
 }
 
 .wall-item {
@@ -694,26 +881,15 @@ body::before {
     z-index: 10;
 }
 
-.wall-item img {
+.scratch-image-hidden {
     width: 100%;
-    height: auto;
-    object-fit: contain;
+    height: 100%;
+    object-fit: cover;
+    /* Ensures image fits perfectly */
     display: block;
-}
-
-@keyframes marquee-vertical {
-    0% {
-        transform: translateY(0);
-    }
-
-    100% {
-        transform: translateY(-50%);
-    }
-}
-
-/* Pause animation on hover */
-.memory-wall:hover .memory-track {
-    animation-play-state: paused;
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 
 @media (max-width: 768px) {
@@ -1047,6 +1223,15 @@ body::before {
     transform: translateY(-5px);
 }
 
+.time-block .scratch-instruction {
+    font-family: var(--font-body);
+    color: #8B4513;
+    font-size: 0.95rem;
+    margin-top: 1rem;
+    font-weight: 500;
+    opacity: 0.8;
+}
+
 .time-block span {
     font-family: var(--font-display);
     font-size: 2rem;
@@ -1283,4 +1468,26 @@ body::before {
     .letter-header-icon {
         font-size: 2.5rem;
     }
+}
+
+/* Base Letter Styles (Original Reversion) */
+.letter-section {
+    padding: var(--spacing-lg) 2rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.letter-paper {
+    background: #fff;
+    padding: 3rem;
+    border-radius: 2px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 1);
+    position: relative;
+    min-height: 400px;
+}
+
+.letter-content {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: var(--text-secondary);
 }

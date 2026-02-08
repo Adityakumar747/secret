@@ -545,14 +545,41 @@ function renderDayPage(container, dayData, dayType) {
         <div class="photos-section">
             <h2 class="section-title">Our Memories 📸</h2>
             <div class="photos-grid">
-                ${generatePhotoCards(dayData.photos, dayType, dayData.color)}
+                ${generatePhotoCards(dayData.photos.slice(0, 2), dayType, dayData.color)}
             </div>
         <div class="memories-section">
             <p class="memories-text">${dayData.memories}</p>
         </div>
 
-        <!-- CUTE MASCOT SECTION -->
-        <div class="cute-mascot-container" style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+        </div>
+
+        <!-- CHOCOLATE DAY SCRATCH REVEAL SECTION -->
+        ${dayType === 'chocolate' ? `
+        <div class="chocolate-scratch-section">
+            <div class="scratch-container">
+                <img src="${dayData.photos[2]}" class="scratch-image-hidden" alt="Hidden Surprise">
+                <canvas id="chocolateScratchCanvas"></canvas>
+            </div>
+            <p class="scratch-instruction">Scratch the box to reveal a sweet surprise! ✨</p>
+        </div>
+        ` : ''}
+
+        <!-- TEDDY DAY SHAKE REVEAL SECTION -->
+        ${dayType === 'teddy' ? `
+        <div class="teddy-shake-section">
+            <div class="shake-box-container" id="teddyShakeBox">
+                <div class="shake-box-cover">
+                    <div class="shake-icon">🧸</div>
+                    <div class="shake-text">SHAKE ME!</div>
+                </div>
+                <img src="${dayData.photos[2]}" class="shake-image-hidden" alt="Hidden Surprise">
+            </div>
+            <p class="shake-instruction">Shake the box to see a cuddly surprise! ✨</p>
+        </div>
+        ` : ''}
+
+        <!-- CUTE MASCOT SECTION (Moved below box) -->
+        <div class="cute-mascot-container" style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; margin-top: 2rem; margin-bottom: 2rem;">
             ${(() => {
             const images = Array.isArray(dayData.cuteImage) ? dayData.cuteImage : (dayData.cuteImage ? [dayData.cuteImage] : []);
             return images.map(img => {
@@ -563,8 +590,6 @@ function renderDayPage(container, dayData, dayType) {
                 }
             }).join('');
         })()}
-            
-            ${(!dayData.cuteImage || (Array.isArray(dayData.cuteImage) && dayData.cuteImage.length === 0)) ? '' : ''}
         </div>
         
         <button class="back-btn" id="backToGallery">
@@ -577,6 +602,215 @@ function renderDayPage(container, dayData, dayType) {
         container.classList.add('hidden');
         document.getElementById('galleryPage').classList.remove('hidden');
     });
+
+    // Initialize Chocolate Scratch if applicable
+    if (dayType === 'chocolate') {
+        setTimeout(initChocolateScratch, 100);
+    }
+
+    // Initialize Teddy Shake if applicable
+    if (dayType === 'teddy') {
+        setTimeout(initTeddyShake, 100);
+    }
+}
+
+function initChocolateScratch() {
+    const canvas = document.getElementById('chocolateScratchCanvas');
+    const container = canvas ? canvas.parentElement : null;
+    if (!canvas || !container) return;
+
+    const ctx = canvas.getContext('2d');
+
+    // Set canvas size based on its actual rendered dimensions
+    const updateSize = () => {
+        // Use offsetWidth/Height as clientWidth can sometimes be 0 during quick transitions
+        canvas.width = container.offsetWidth || 250;
+        canvas.height = container.offsetHeight || 250;
+        drawFoil();
+    };
+
+    // Draw chocolate foil
+    const drawFoil = () => {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // Romantic Pink Foil Gradient
+        const grad = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+        grad.addColorStop(0, '#ff758c'); // Rose Pink
+        grad.addColorStop(0.3, '#ff7eb3'); // Light Pink
+        grad.addColorStop(0.5, '#ffffff'); // Bright Shine
+        grad.addColorStop(0.7, '#ff758c'); // Rose Pink
+        grad.addColorStop(1, '#ff7eb3');
+
+        ctx.fillStyle = grad;
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        // Scatter Tiny Hearts Texture
+        const hearts = ['❤️', '💖', '💗', '💕', '✨'];
+        ctx.font = '14px serif';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        for (let i = 0; i < 30; i++) {
+            const heart = hearts[Math.floor(Math.random() * hearts.length)];
+            const x = Math.random() * canvas.width;
+            const y = Math.random() * canvas.height;
+            ctx.globalAlpha = 0.4;
+            ctx.fillText(heart, x, y);
+        }
+        ctx.globalAlpha = 1.0;
+
+        // Texture Lines
+        ctx.strokeStyle = 'rgba(255,255,255,0.1)';
+        ctx.lineWidth = 1;
+        for (let i = 0; i < canvas.width; i += 15) {
+            ctx.beginPath();
+            ctx.moveTo(i, 0);
+            ctx.lineTo(i + 10, canvas.height);
+            ctx.stroke();
+        }
+
+        // SCRATCH ME Text
+        ctx.fillStyle = 'white';
+        ctx.shadowColor = 'rgba(0,0,0,0.5)';
+        ctx.shadowBlur = 4;
+        ctx.font = 'bold 24px var(--font-display), cursive';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText('SCRATCH ME 🍫', canvas.width / 2, canvas.height / 2);
+        ctx.shadowBlur = 0; // Reset shadow
+    };
+
+    updateSize();
+
+    let isDrawing = false;
+    let lastPoint = null;
+
+    const getPos = (e) => {
+        const rect = canvas.getBoundingClientRect();
+        return {
+            x: (e.clientX || e.pageX) - rect.left,
+            y: (e.clientY || e.pageY) - rect.top
+        };
+    };
+
+    const startDrawing = (e) => {
+        isDrawing = true;
+        lastPoint = getPos(e);
+        // Clear any text with the first touch
+        ctx.globalCompositeOperation = 'destination-out';
+        ctx.beginPath();
+        ctx.arc(lastPoint.x, lastPoint.y, 40, 0, Math.PI * 2);
+        ctx.fill();
+    };
+
+    const scratch = (e) => {
+        if (!isDrawing) return;
+        e.preventDefault();
+
+        const pos = getPos(e);
+
+        ctx.globalCompositeOperation = 'destination-out';
+        ctx.lineJoin = 'round';
+        ctx.lineCap = 'round';
+        ctx.lineWidth = 80; // Large brush for fast reveal
+
+        ctx.beginPath();
+        if (lastPoint) {
+            ctx.moveTo(lastPoint.x, lastPoint.y);
+        } else {
+            ctx.moveTo(pos.x, pos.y);
+        }
+        ctx.lineTo(pos.x, pos.y);
+        ctx.stroke();
+
+        lastPoint = pos;
+        checkReveal();
+    };
+
+    const stopDrawing = () => {
+        isDrawing = false;
+        lastPoint = null;
+    };
+
+    const checkReveal = () => {
+        const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        const pixels = imageData.data;
+        let transparent = 0;
+        // Sample every 20th pixel for more accuracy but still performant
+        for (let i = 0; i < pixels.length; i += 80) {
+            if (pixels[i + 3] === 0) transparent++;
+        }
+
+        const percent = (transparent / (pixels.length / 80)) * 100;
+        if (percent > 40) { // 40% reveal triggers full clear
+            canvas.classList.add('revealed');
+            setTimeout(() => {
+                canvas.remove();
+                createConfetti();
+            }, 600);
+        }
+    };
+
+    // Use PointerEvents for unified Mouse and Touch support
+    canvas.addEventListener('pointerdown', startDrawing);
+    canvas.addEventListener('pointermove', scratch);
+    window.addEventListener('pointerup', stopDrawing);
+
+    // Prevent scrolling while scratching
+    canvas.style.touchAction = 'none';
+}
+
+function initTeddyShake() {
+    const box = document.getElementById('teddyShakeBox');
+    const cover = box ? box.querySelector('.shake-box-cover') : null;
+    if (!box || !cover) return;
+
+    let intensity = 0;
+    let isInteracting = false;
+    let revealed = false;
+
+    const increaseIntensity = () => {
+        if (revealed) return;
+
+        intensity += 5;
+        box.classList.add('shaking');
+
+        // Intensity decay
+        clearTimeout(box.shakeTimer);
+        box.shakeTimer = setTimeout(() => {
+            box.classList.remove('shaking');
+            intensity = Math.max(0, intensity - 10);
+        }, 300);
+
+        if (intensity >= 100) {
+            revealed = true;
+            cover.classList.add('revealed');
+            createConfetti();
+            setTimeout(() => {
+                box.classList.remove('shaking');
+            }, 500);
+        }
+    };
+
+    box.addEventListener('mousedown', () => { isInteracting = true; increaseIntensity(); });
+    box.addEventListener('touchstart', (e) => {
+        isInteracting = true;
+        increaseIntensity();
+        if (e.cancelable) e.preventDefault();
+    }, { passive: false });
+
+    window.addEventListener('mousemove', () => {
+        if (isInteracting) increaseIntensity();
+    });
+
+    window.addEventListener('touchmove', (e) => {
+        if (isInteracting) {
+            increaseIntensity();
+            if (e.cancelable) e.preventDefault();
+        }
+    }, { passive: false });
+
+    window.addEventListener('mouseup', () => isInteracting = false);
+    window.addEventListener('touchend', () => isInteracting = false);
 }
 
 function getDayIcon(dayType) {
@@ -983,9 +1217,7 @@ function renderValentinePage(container) {
                 <div class="memory-track">
                     ${(() => {
             const photos = CONFIG.valentinePhotos || [];
-            // Triplicate the photos array for an even smoother loop in masonry layout
-            const duplicatedPhotos = [...photos, ...photos, ...photos];
-            return duplicatedPhotos.map(photo => `
+            return photos.map(photo => `
                             <div class="wall-item">
                                 <img src="${photo}" alt="Memory" loading="lazy">
                             </div>
@@ -1002,6 +1234,7 @@ function renderValentinePage(container) {
 
     // Create confetti
     createConfetti();
+
 
     // Attach Video Listeners for Audio Sync
     const vids = document.querySelectorAll('.valentine-video');
@@ -1029,6 +1262,7 @@ function renderValentinePage(container) {
         document.getElementById('galleryPage').classList.remove('hidden');
     });
 }
+
 
 function createConfetti() {
     const colors = ['#e74c3c', '#ff6b9d', '#c44569', '#ffd93d', '#ff1493'];

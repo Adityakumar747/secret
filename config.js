@@ -9,7 +9,7 @@ const CONFIG = {
     relationshipStartDate: "2026-01-11",  // Your anniversary date (YYYY-MM-DD)
 
     // === UNLOCK SETTINGS ===
-    enableDateLock: true,  // Set to false to unlock all cards immediately
+    enableDateLock: false,  // Set to false to unlock all cards immediately
     unlockYear: 2026,  // Year when cards unlock
     testDate: "", // Set a date here (YYYY-MM-DD) to test the website (Leave empty or null for real-time)
 
@@ -202,7 +202,8 @@ Your Love`,
             message: "Life with you is sweeter than the finest chocolate.",
             photos: [
                 "assets/photos/IMG_5567.JPG.jpeg",
-                "assets/photos/IMG_5568.JPG.jpeg"
+                "assets/photos/IMG_5568.JPG.jpeg",
+                "assets/photos/IMG_5875.JPG.jpeg"
             ],
             // Add a cute gif path here (e.g., "assets/photos/cute-cat.gif")
             cuteImage: "assets/photos/choclate.gif",
@@ -216,7 +217,8 @@ Your Love`,
             message: "You're my comfort, my warmth, my cuddly companion in life.",
             photos: [
                 "assets/photos/IMG_5642.JPG.jpeg",
-                "assets/photos/IMG_5782.JPG.jpeg"
+                "assets/photos/IMG_5782.JPG.jpeg",
+                "assets/photos/IMG_5853.JPG.jpeg"
             ],
             // Add a cute gif path here (e.g., "assets/photos/cute-cat.gif")
             cuteImage: "assets/photos/Teddy Bear GIF.gif",
@@ -229,7 +231,8 @@ Your Love`,
             color: "#9b59b6",
             message: "I promise to stay, even when things get hard.NO matter what happen in future you will be my first priority",
             photos: [
-                "assets/photos/IMG_5783.JPG.jpeg"
+                "assets/photos/IMG_5783.JPG.jpeg",
+                "assets/photos/IMG_5535.JPG.jpeg"
             ],
             // Add a cute gif path here (e.g., "assets/photos/cute-cat.gif")
             cuteImage: "assets/photos/promoise.gif",
@@ -242,7 +245,8 @@ Your Love`,
             color: "#FF69B4",
             message: "In your arms, I've found my home.",
             photos: [
-                "assets/photos/IMG_5785.JPG.jpeg"
+                "assets/photos/IMG_5785.JPG.jpeg",
+                "assets/photos/IMG_5562.JPG.jpeg"
             ],
             // Add a cute gif path here (e.g., "assets/photos/cute-cat.gif")
             cuteImage: "assets/photos/ghost hug GIF.gif",
@@ -255,7 +259,8 @@ Your Love`,
             color: "#FF1493",
             message: "A kiss from you ? Yeah… I’d risk everything.Let’s skip the words and start with a kiss",
             photos: [
-                "assets/photos/IMG_5786.JPG.jpeg"
+                "assets/photos/IMG_5786.JPG.jpeg",
+                "assets/photos/IMG_5563.JPG.jpeg"
             ],
             // Add your cute gif or video paths here
             cuteImage: [
