@@ -157,6 +157,16 @@ Every moment with you is a treasure. From the day we met, my life has been fille
 
 You are my sunrise and my sunset, my yesterday, today, and all my tomorrows.
 
+From the day you came into my life, everything started feeling so magical. You are truly very special to me, sonaa. I love you so much.
+
+I want to start my day with you and end my day with you. I want to eat with you, sleep with you, share my happiest moments with you, and also stand beside you in your sad times.
+
+You are so cute, babu, and my heart feels full just thinking about you. I really want to give you so much love, care, and warmth. I want to support you in every situation, especially when life feels heavy or unfair. If something doesn’t feel right, I want us to sit together, talk about it, and fix it together.
+
+I know I’m a little budhu and not perfect at pampering yet, but I’m learning everything just for you, sonaa. And trust me, in real life I can pamper you even better. With time, my love for you will only grow deeper and stronger.
+
+You are my comfort, my peace, and my safe place. Being with you makes everything feel better. I just want to hold your hand through every phase of life and love you a little more every single day. ❤️
+
 This website is a small token of my infinite love for you. Every page, every word, every moment captured here is a reminder of how blessed I am to have you in my life.
 
 I love you more than words can express.
