@@ -85,9 +85,9 @@ const CONFIG = {
 
     // === VALENTINE'S DAY PAGE ===
     valentineVideo: {
-        meetingVideo: "assets/videos/IMG_5806.mp4",  // Path to "where we met" video
-        journeyVideo: "assets/videos/IMG_5808.mp4",  // Path to "our journey" video
-        extraVideo: "assets/videos/IMG_5807.mp4",    // Another special memory
+        meetingVideo: "assets/videos/0212 (1)(1).mp4",  // Path to "where we met" video
+        journeyVideo: "assets/videos/IMG_5807.mp4",  // Path to "our journey" video
+        extraVideo: "assets/videos/IMG_5806.mp4",    // Another special memory
     },
 
     // === VALENTINE'S DAY PHOTOS ===
