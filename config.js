@@ -9,7 +9,7 @@ const CONFIG = {
     relationshipStartDate: "2026-01-11",  // Your anniversary date (YYYY-MM-DD)
 
     // === UNLOCK SETTINGS ===
-    enableDateLock: true,  // Set to false to unlock all cards immediately
+    enableDateLock: false,  // Set to false to unlock all cards immediately
     unlockYear: 2026,  // Year when cards unlock
     testDate: "", // Set a date here (YYYY-MM-DD) to test the website (Leave empty or null for real-time)
 
